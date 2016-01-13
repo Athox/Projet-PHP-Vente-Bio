@@ -3,7 +3,7 @@
 function connex($base,$param)
 {
 	include_once($param.".php");
-	$idcom=@mysql_connect(MYHOST,MYUSER,MYPASS);
+	$idcom=@mysql_connect(localhost/xe,system,root);
 	$idbase=@mysql_select_db($base);
 	if(!$idcom | !$idbase)
 	{
