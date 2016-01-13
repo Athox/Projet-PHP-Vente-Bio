@@ -1,14 +1,13 @@
 <?php
 
-function connex($base,$param)
+function connex($param)
 {
 	include_once($param.".php");
-	$idcom=@mysql_connect(MYHOST,MYUSER,MYPASS);
-	$idbase=@mysql_select_db($base);
+	$idcom= oci_connect('SYSTEM','root','localhost/XE');
 	if(!$idcom | !$idbase)
 	{
 	echo "<script type=text/javascript>";
-	echo "alert('Connexion Impossible à la base $base')</script>";
+	echo "alert('Connexion Impossible ï¿½ la base $base')</script>";
 }
 return $idcom;
 }
