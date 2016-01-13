@@ -4,7 +4,8 @@
 <head>         
 	<meta http-equiv="Content-type" content= "text/html;charset=UTF-8" /> 
 	<link href="style.css" rel="stylesheet" type="text/css">        
-	<title>Les produits bios du pays</title>      
+	<title>Les produits bios du pays</title>   
+	<h1> BDKBSKBD </h1>
 	
 	<script src="js/jquery.js" type="text/javascript"></script><!-- Insertion de la bibliotheque jQuery -->
 	<script type="text/javascript" src="js/localscroll/jquery.localscroll.js"></script>
