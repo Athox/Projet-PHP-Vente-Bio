@@ -95,3 +95,17 @@ INSERT INTO Client VALUES
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 
+INSERT INTO PROJET.Produits VALUES (1, 'Courgette', 'Provenance de Italie', 17, 1.95 ,0);
+INSERT INTO PROJET.Produits VALUES (2, 'Carotte', 'provenance d un producteur local', 30, 8.95 ,0);
+INSERT INTO PROJET.Produits VALUES (3, 'Obergine', 'Origine Belgique', 41, 6.95 ,0);
+INSERT INTO PROJET.Produits VALUES (4, 'Poireau', 'provenance d Espagne', 76, 4.70 ,0);
+INSERT INTO PROJET.Produits VALUES (5, 'Salade', 'Producteur local', 85, 2.75 ,0);
+INSERT INTO PROJET.Produits VALUES (6, 'Epinard', 'originaire de Somalie', 44, 5.75 ,0);
+INSERT INTO PROJET.Produits VALUES (7, 'Orange', 'Provenance de Italie', 12, 2.95 ,1);
+INSERT INTO PROJET.Produits VALUES (8, 'Pèche', 'provenance d un producteur local', 50, 1.95 ,1);
+INSERT INTO PROJET.Produits VALUES (9, 'Poire', 'Origine Belgique', 21, 5.95 ,1);
+INSERT INTO PROJET.Produits VALUES (10, 'Fraise', 'provenance d Espagne', 16, 3.70 ,1);
+INSERT INTO PROJET.Produits VALUES (11, 'Pomme', 'Producteur local', 85, 4.75 ,1);
+INSERT INTO PROJET.Produits VALUES (12, 'Banane', 'originaire de Somalie', 74, 4.75 ,1);
+
+INSERT INTO PROJET.Client VALUES (1, 'Admin','Admin', 'Admin@admin.fr', 'admin');
