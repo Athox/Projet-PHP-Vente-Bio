@@ -3,14 +3,13 @@ include("connection.php");
 
 function afficher_produit($is_fruit) {
     if ($is_fruit) {
-        $requete = "SELECT * FROM Produits WHERE `fruit`=1";
+        $requete = "SELECT * FROM PROJET.Produits WHERE fruit=1";
     } else {
-        $requete = "SELECT * FROM Produits WHERE `fruit`=0";
+        $requete = "SELECT * FROM PROJET.Produits WHERE fruit=0";
     }
-    $idcom = connex("Myparam");
-
+    $idcom= oci_connect('SYSTEM','root','localhost/XE');
     $stmt = oci_parse($idcom, $requete);
-    $result = oci_execute($result,OCI_DEFAULT);
+    $result = oci_execute($stmt);
     if (!$result) {
         echo "Lecture impossible";
     } else {
@@ -18,14 +17,14 @@ function afficher_produit($is_fruit) {
         echo "<tr>";
         echo "<th>Produit</th><th>Description</th><th>Stock</th><th>Prix</th><th>Quantité</th><th></th>";
         echo "</tr>";
-        while ($ligne  = oci_fetch_assoc($result)) {
-            echo "<tr id='" . $ligne[0] . "'>";
-            echo "<td>" . $ligne[1] . "</td>";
-            echo "<td>" . $ligne[2] . "</td>";
-            echo "<td>" . $ligne[3] . "</td>";
-            echo "<td>" . $ligne[4] . "</td>";
+        while ($ligne  = oci_fetch_assoc($stmt)) {
+            echo "<tr id='" . $ligne['PRODUCT_ID'] . "'>";
+            echo "<td>" . $ligne['NAME'] . "</td>";
+            echo "<td>" . $ligne['DESCRIPTION'] . "</td>";
+            echo "<td>" . $ligne['QUANTITY_STOCK'] . "</td>";
+            echo "<td>" . $ligne['KILO_PRICE'] . "</td>";
             echo "<td><select name='qte_v[]'>";
-            for ($i = 1; $i <= $ligne[3]; $i++) {
+            for ($i = 1; $i <= $ligne['QUANTITY_STOCK']; $i++) {
                 echo"<option>" . $i . "</option>";
             }
             echo "</select></td>";
