@@ -7,7 +7,7 @@ function connex($param)
 	if(!$idcom | !$idbase)
 	{
 	echo "<script type=text/javascript>";
-	echo "alert('Connexion Impossible � la base $base')</script>";
+	echo "alert('Connexion Impossible a la base $base')</script>";
 }
 return $idcom;
 }
