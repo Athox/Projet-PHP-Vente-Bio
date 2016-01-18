@@ -17,26 +17,26 @@
 					 
 						foreach($_POST["obligatoire"] as $lfg ){
 							if(empty($lfg)){
-								header("Location: http://localhost/projetBoutiqueBio/inscription.php?erreur=40");
+								header("Location: http://localhost/Projet-PHP-Vente-Bio/inscription.php?erreur=40");
 								exit;
 							}
 						}
 						if(!filter_var($titre[2],FILTER_VALIDATE_EMAIL)){
-							header("Location: http://localhost/projetBoutiqueBio/inscription.php?erreur=42");
+							header("Location: http://localhost/Projet-PHP-Vente-Bio/inscription.php?erreur=42");
 							exit;						
 						}
 						if($_POST["obligatoire"][4]!= $_POST["obligatoire"][3]){
-							header("Location: http://localhost/projetBoutiqueBio/inscription.php?erreur=41");
+							header("Location: http://localhost/Projet-PHP-Vente-Bio/inscription.php?erreur=41");
 						exit;
 						}			
-						include("connection.php");
-						$idcom=connex("p1306716","Myparam");
-						$requete="INSERT INTO Client (name,first_name,mail,password) VALUES ('".$titre[0]."','".$titre[1]."','".$titre[2]."','".$titre[3]."');";
-						mysql_query($requete,$idcom);
-						mysql_close();
+						$requete="INSERT INTO Client (name,first_name,mail,password) VALUES ('".$titre[0]."','".$titre[1]."','".$titre[2]."','".$titre[3]."')";
+						$idcom= oci_connect('SYSTEM','root','localhost/XE');
+                                                $stmt = oci_parse($idcom, $requete);
+                                                oci_execute($stmt);
+                                                oci_commit($idcom);
 						echo "<div id=formuaire_valid>";
 						echo "<script type='text/javascript'>window.alert('Bienvenue sur notre site ".$titre[0]." ".$titre[1]."');</script>";
-						header("Location: http://localhost/projetBoutiqueBio/index.php");
+						header("Location: http://localhost/Projet-PHP-Vente-Bio/index.php");
 						exit;
 						echo "</div>";
 						

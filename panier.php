@@ -36,7 +36,7 @@ function ajouter_produit(){
 			array_push($_SESSION['panier'],$new_fruit);
 		}
 	}
-	header("Location: http://localhost/projetBoutiqueBio/index.php");
+	header("Location: http://localhost/Projet-PHP-Vente-Bio/index.php");
 }
 
 function afficher_panier(){
@@ -89,7 +89,7 @@ function supprimer_produit(){
 	if(isset($_GET['clean_all'])){
 		$_SESSION['panier']=NULL;
 		session_destroy();	
-		header("Location: http://localhost/projetBoutiqueBio/panier.php");
+		header("Location: http://localhost/Projet-PHP-Vente-Bio/panier.php");
 	}
 /*-----------------------------------------supprimer un article--------------------------------------------------------*/
 	if(isset($_GET['clean_id'])){

@@ -49,10 +49,10 @@
 		$_SESSION["panier"]=NULL;
 		
 
-		header("Location: http://localhost/projetBoutiqueBio/panier.php");
+		header("Location: http://localhost/Projet-PHP-Vente-Bio/panier.php");
 	
 	}else{
-		header("Location: http://localhost/projetBoutiqueBio/connect.php");
+		header("Location: http://localhost/Projet-PHP-Vente-Bio/connect.php");
 	}
 
 ?>

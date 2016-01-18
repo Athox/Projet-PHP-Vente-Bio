@@ -9,54 +9,50 @@
 </head>         
 <body>  
 <div id=container>
-<?php include("entete.html");?>
 		<?PHP
 		$co_client=array($_POST["identifiant"],$_POST["password"]);
 		
-		include("connection.php");
-		$idcom=connex("p1306716","Myparam");
-		$requete="SELECT `name`,`first_name`,`mail` FROM Client WHERE `name`= '".$co_client[0]."'  && `password`='".$co_client[1]."'";
-		$requete2="SELECT * FROM Client WHERE `name`= '".$co_client[0]."'";
-		$result=@mysql_query($requete,$idcom);
-		$result2=@mysql_query($requete2,$idcom);
+                $idcom= oci_connect('SYSTEM','root','localhost/XE');
+                
+                
+		$requete="SELECT name,first_name,mail FROM PROJET.Client WHERE name= '".$co_client[0]."'  and password='".$co_client[1]."'";
+		$requete2="SELECT * FROM PROJET.Client WHERE name= '".$co_client[0]."'";
+		//echo $requete;exit;
+                $stmt = oci_parse($idcom, $requete);
+                $stmt2= oci_parse($idcom, $requete2);
+                $result = oci_execute($stmt);
+                $result2 = oci_execute($stmt2);
 		
 		
 		if(empty($co_client[0]) or empty($co_client[1])){
-				header("Location: http://localhost/projetBoutiqueBio/connect.php?erreur=45");
+				header("Location: http://localhost/Projet-PHP-Vente-Bio/connect.php?erreur=45");
 				exit;
 				}
 		
-		
-		if(mysql_num_rows(mysql_query($requete))==false)
+                                 
+                $res=oci_fetch_assoc($stmt);
+                $res2=oci_fetch_assoc($stmt2);
+                
+		if($res==null)
 		{
-			if(mysql_num_rows(mysql_query($requete2))==false){
-				header("Location: http://localhost/projetBoutiqueBio/connect.php?erreur=43");					
+                    
+			if($res2== null){
+				header("Location: http://localhost/Projet-PHP-Vente-Bio/connect.php?erreur=43");					
 				exit;}
-			header("Location: http://localhost/projetBoutiqueBio/connect.php?erreur=44");				
+			header("Location: http://localhost/Projet-PHP-Vente-Bio/connect.php?erreur=44");				
 			exit;
 		}
 		else{
-			$_SESSION["login"]=array();
-			
-			
-			$nbcol=mysql_num_fields($result);
-			$nbart=mysql_num_rows($result);
-			
-			
-			
-			while($ligne=mysql_fetch_array($result,MYSQL_NUM))
-				{
-				  
-				  foreach($ligne as $valeur){
-				  array_push($_SESSION["login"],$valeur);
-				   
-					  }
-				  
-				}
-			header("Location: http://localhost/projetBoutiqueBio/index.php");				
-			exit;
-		}
-		mysql_free_result($result);
+                    $_SESSION["login"]=array();
+
+                    $nbart=oci_num_rows($stmt);
+                    foreach($res as $valeur){
+                        array_push($_SESSION["login"],$valeur);
+                    }
+                }
+                    header("Location: http://localhost/Projet-PHP-Vente-Bio/index.php");				
+                    exit;
+		
 				
 ?>
 

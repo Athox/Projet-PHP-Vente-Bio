@@ -13,7 +13,7 @@
 	
 	mysql_query($requete,$idcom);
 	mysql_close();
-	header("Location: http://localhost/projetBoutiqueBio/page_admin.php");
+	header("Location: http://localhost/Projet-PHP-Vente-Bio/page_admin.php");
 	exit;
 
 

@@ -12,14 +12,14 @@
 					
 					if(isset($_SESSION["login"])){
 						echo"<td id=si_connecter>";
-						echo "<div>".$_SESSION["login"][1]." ".$_SESSION["login"][0]."</div><div><a href='logout.php'>deconnexion</a></div>" ;
+						echo "<div>".$_SESSION["login"][0]." ".$_SESSION["login"][1]."</div><div><a href='logout.php'>deconnexion</a></div>" ;
 						echo"</td>";
 					}		
 				?>				 
 			</tr>
 		</table> 
 	<?php 
-		if(isset($_SESSION["login"])&& $_SESSION["login"][1]=='Admin'){
+		if(isset($_SESSION["login"])&& $_SESSION["login"][0]=='Admin'){
 			
 			echo "<a href='page_admin.php'class=bouton_produit style='border-radius:0px;border-bottom-right-radius:10px; position:fixed;'>page admin</a>";			
 		}

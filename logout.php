@@ -11,7 +11,7 @@
 	<?php
 		$_SESSION["login"]=NULL;
 		session_destroy();
-		header("Location: http://localhost/projetBoutiqueBio/index.php");
+		header("Location: http://localhost/Projet-PHP-Vente-Bio/index.php");
 		exit;
 	
 	?>  
