@@ -11,6 +11,18 @@
 		return $prix_total;
 	}	
 	if(isset($_SESSION["login"])){
+            $idcom= oci_connect('SYSTEM','root','localhost/XE');
+            $datetime=new DateTime();
+            foreach($_SESSION['panier'] as $product){
+                $requete="INSERT INTO PROJET.Statvente (product_id,client_id,date_vente,quantite) VALUES (".$product['id'].",".$_SESSION["login"][0].",".$datetime->format('Y\-m\-d\ h:i:s').",".$product['qte_voulu'].")";
+                echo $requete;exit;
+                $stmt = oci_parse($idcom, $requete);
+                oci_execute($stmt);
+                oci_commit($idcom);
+			
+				
+            }            
+            
 		$devis=fopen("devis_".$_SESSION["login"][1]."_".date("d-m-Y").".txt","w+");
 		fputs($devis,$_SESSION["login"][1]);
 		fputs($devis,"\r\n");

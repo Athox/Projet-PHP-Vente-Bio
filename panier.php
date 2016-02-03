@@ -3,10 +3,10 @@
 include("connection.php");
 
 function ajouter_produit(){		
-	$requete="SELECT * FROM Produits WHERE `product_id`=".$_GET['product_id']."";
-	$idcom=connex("p1306716","Myparam");
-	$result=@mysql_query($requete,$idcom);
-	
+	$requete="SELECT * FROM PROJET.Produits WHERE product_id=".$_GET['product_id']."";
+	$idcom= oci_connect('SYSTEM','root','localhost/XE');
+        $stmt = oci_parse($idcom, $requete);
+	$result=oci_execute($stmt);
 	if(!$result){
 		echo "Lecture impossible";
 	}
@@ -16,12 +16,12 @@ function ajouter_produit(){
 		} 
 		$produit=array();
 	
-		while($ligne=mysql_fetch_array($result,MYSQL_NUM)){
-			$new_fruit = array( 'id' => $ligne[0],
-								'name' => $ligne[1] ,
-								'description' => $ligne[2] ,
-								'qte_max' => $ligne[3] ,
-								'prix' => $ligne[4] ,
+		while($ligne=oci_fetch_assoc($stmt)){
+			$new_fruit = array( 'id' => $ligne['PRODUCT_ID'],
+								'name' => $ligne['NAME'] ,
+								'description' => $ligne['DESCRIPTION'] ,
+								'qte_max' => $ligne['QUANTITY_STOCK'] ,
+								'prix' => $ligne['KILO_PRICE'] ,
 								'qte_voulu' => $_GET['qte_voulu']);
 		}
 		

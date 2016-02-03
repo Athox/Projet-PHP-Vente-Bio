@@ -14,6 +14,8 @@
 	<div class="box" style='width:500px;text-align:left;'>
 		<h2>Inscription</h2>
 		<?php
+                
+                 
 			if(isset($_GET['erreur']) && $_GET['erreur'] == 40){
 				echo "<div class='erreur_connect'>Emplacment vide</div>";
 			}

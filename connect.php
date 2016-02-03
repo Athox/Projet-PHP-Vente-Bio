@@ -12,17 +12,17 @@
 	 <?php include("entete.php");?>
 	<div class="box" style='width:500px;text-align:left;'>
 		<h2>Connexion</h2>
-			<?php 
-			if(isset($_GET['erreur']) && $_GET['erreur'] == 45){
-				echo "<div class=erreur_connect>Champ vide</div>";
-			}
-			if(isset($_GET['erreur']) && $_GET['erreur'] == 43){
-				echo "<div class=erreur_connect>Veuillez vous inscrire</div>";
-			}
-			if(isset($_GET['erreur']) && $_GET['erreur'] == 44){
-				echo "<div class=erreur_connect>Mot de passe incorrect</div>";
-			}
-			?>
+                    <?php 
+                    if(isset($_GET['erreur']) && $_GET['erreur'] == 45){
+                            echo "<div class=erreur_connect>Champ vide</div>";
+                    }
+                    if(isset($_GET['erreur']) && $_GET['erreur'] == 43){
+                            echo "<div class=erreur_connect>Veuillez vous inscrire</div>";
+                    }
+                    if(isset($_GET['erreur']) && $_GET['erreur'] == 44){
+                            echo "<div class=erreur_connect>Mot de passe incorrect</div>";
+                    }
+                    ?>
 		<div class='cache'></div>
 		<form action="valid_connec.php" method="post">
 			<div class='line' style='margin-top:50px;'>
