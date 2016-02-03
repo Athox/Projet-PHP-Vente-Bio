@@ -5,6 +5,7 @@
 		$prix_total = 0;
 		if(isset($_SESSION['panier'])){
 			foreach($_SESSION['panier'] as $produit){
+                            $produit['prix']=str_replace(',','.',$produit['prix']);
 				$prix_total += $produit['prix']*$produit['qte_voulu'];
 			}
 		}
@@ -14,8 +15,8 @@
             $idcom= oci_connect('SYSTEM','root','localhost/XE');
             $datetime=new DateTime();
             foreach($_SESSION['panier'] as $product){
-                $requete="INSERT INTO PROJET.Statvente (product_id,client_id,date_vente,quantite) VALUES (".$product['id'].",".$_SESSION["login"][0].",".$datetime->format('Y\-m\-d\ h:i:s').",".$product['qte_voulu'].")";
-                echo $requete;exit;
+                $requete="INSERT INTO PROJET.Statvente (product_id,client_id,date_vente,quantite) VALUES (".$product['id'].",".$_SESSION["login"][3].",TO_DATE('".
+                        $datetime->format('Y\-m\-d\ h:i:s')."', 'yyyy/mm/dd hh24:mi:ss'),".$product['qte_voulu'].")";         
                 $stmt = oci_parse($idcom, $requete);
                 oci_execute($stmt);
                 oci_commit($idcom);
@@ -48,16 +49,19 @@
 		mail($destinataire,$sujet,$message,$headers);
 		
 		
-		$idcom=connex("p1306716","Myparam");
 		if(isset($_SESSION['panier'])){
+                    $idcom= oci_connect('SYSTEM','root','localhost/XE');
 			foreach($_SESSION['panier'] as $produit){
-				$qte_stock=$produit['qte_max']-$produit['qte_voulu'];				
-				$requete="UPDATE  `produits` SET `quantity_stock`=".$qte_stock." where `product_id`=".$produit['id'].";";
-				mysql_query($requete,$idcom);
+				$qte_stock=$produit['qte_max']-$produit['qte_voulu'];
+				$requete="UPDATE  PROJET.produits SET quantity_stock=".$qte_stock." where product_id=".$produit['id'];
+                              
+				$stmt = oci_parse($idcom, $requete);
+                                oci_execute($stmt);
+                                oci_commit($idcom);
+                                
 				}
 	
 		}
-		mysql_close();
 		$_SESSION["panier"]=NULL;
 		
 

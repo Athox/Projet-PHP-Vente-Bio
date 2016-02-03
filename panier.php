@@ -61,6 +61,7 @@ function cacul_prix_total(){
 	$prix_total = 0;
 	if(isset($_SESSION['panier'])){
 		foreach($_SESSION['panier'] as $produit){
+                        $produit['prix']=str_replace(',','.',$produit['prix']);
 			$prix_total += $produit['prix']*$produit['qte_voulu'];
 		}
 	}

@@ -15,7 +15,7 @@
                 $idcom= oci_connect('SYSTEM','root','localhost/XE');
                 
                 
-		$requete="SELECT name,first_name,mail FROM PROJET.Client WHERE name= '".$co_client[0]."'  and password='".$co_client[1]."'";
+		$requete="SELECT name,first_name,mail,client_id FROM PROJET.Client WHERE name= '".$co_client[0]."'  and password='".$co_client[1]."'";
 		$requete2="SELECT * FROM PROJET.Client WHERE name= '".$co_client[0]."'";
 		//echo $requete;exit;
                 $stmt = oci_parse($idcom, $requete);
